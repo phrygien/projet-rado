@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PermissionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,12 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
     Route::get('/register', [\App\Http\Controllers\AuthController::class, 'registerView'])->name('registerView');
     Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register'])->name('register');
+});
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
 });
 
 Route::middleware('auth')->group(function () {
