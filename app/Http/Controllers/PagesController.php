@@ -646,4 +646,10 @@ class PagesController extends Controller
     {
         return view('pages/dashboards-widget-contacts');
     }
+
+    //page gestion emploi du temps
+    public function classePage()
+    {
+        return view('classes/page');
+    }
 }

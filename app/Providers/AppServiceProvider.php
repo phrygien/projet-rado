@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Interfaces\ISalleInterface;
+use App\Repository\SalleRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // enregistreme des interface et repository
+        $this->app->bind(ISalleInterface::class, SalleRepository::class);
     }
 
     /**

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\SalleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +28,11 @@ Route::middleware('guest')->group(function () {
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
-    Route::resource('permissions', PermissionController::class);
+    Route::get('permissions/liste', [PermissionController::class, 'index'])->name('permissions/liste');
+    Route::get('permissions/create', [PermissionController::class, 'create'])->name('permissions/create');
+    Route::post('permissions/store', [PermissionController::class, 'store'])->name('permissions/store');
+    Route::get('permissions/edit/{id}', [PermissionController::class, 'edit'])->name('permissions/edit');
+    Route::patch('permissions/update/{id}', [PermissionController::class, 'update'])->name('permissions/update');
 });
 
 Route::middleware('auth')->group(function () {
@@ -167,4 +173,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboards/project-boards', [PagesController::class, 'dashboardsProjectBoards'])->name('dashboards/project-boards');
     Route::get('/dashboards/widget-ui', [PagesController::class, 'dashboardsWidgetUi'])->name('dashboards/widget-ui');
     Route::get('/dashboards/widget-contacts', [PagesController::class, 'dashboardsWidgetContacts'])->name('dashboards/widget-contacts');
+
+    // route gestion emploie du temps
+    Route::get('/gestions/classe', [PagesController::class, 'classePage'])->name('gestions/classe');
+    Route::get('/gestions/salle', [SalleController::class, 'index'])->name('gestions/salle');
+    Route::get('/gestions/create_salle', [SalleController::class, 'create'])->name('gestions/create_salle');
+    Route::post('/gestions/store_salle', [SalleController::class, 'store'])->name('gestions/store_salle');
+    Route::delete('/gestions/delete_salle/{id}', [SalleController::class, 'destroy'])->name('gestions/delete_salle');
 });

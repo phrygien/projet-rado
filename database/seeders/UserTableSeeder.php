@@ -18,17 +18,17 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'name' => 'Andriambololontsoa', 
-            'email' => 'phrygien@gmail.com',
+            'name' => 'Rado',
+            'email' => 'rado@gmail.com',
             'password' => Hash::make('12345678')
         ]);
-         
+
         $role = Role::find(1);
 
         $permissions = Permission::pluck('id', 'id')->all();
-   
+
         $role->syncPermissions($permissions);
-     
+
         $user->assignRole([$role->id]);
     }
 }

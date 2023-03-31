@@ -521,47 +521,25 @@ class SidebarPanel
     public static function apps()
     {
         return [
-            'title' => 'Applications',
+            'title' => 'Gestion emploi du temps',
             'items' => [
                 [
                     'apps_chat' => [
-                        'title' => 'Chat App',
+                        'title' => 'Enseignants',
                         'route_name' => 'apps/chat'
                     ],
                     'apps_kanban' => [
-                        'title' => 'Kanban Board',
-                        'route_name' => 'apps/kanban'
+                        'title' => 'Classe',
+                        'route_name' => 'gestions/classe'
                     ],
                     'apps_filemanager' => [
-                        'title' => 'File Manager',
-                        'route_name' => 'apps/filemanager'
+                        'title' => 'Salles',
+                        'route_name' => 'gestions/salle'
                     ],
                     'apps_mail' => [
-                        'title' => 'Mail App',
+                        'title' => 'Emploi du temps',
                         'route_name' => 'apps/mail'
                     ],
-                    'apps_todo' => [
-                        'title' => 'Todo App',
-                        'route_name' => 'apps/todo'
-                    ],
-                ],
-                [
-                    'apps_nft_1' => [
-                        'title' => 'NFT Apps v1',
-                        'route_name' => 'apps/nft1'
-                    ],
-                    'apps_nft_2' => [
-                        'title' => 'NFT Apps v2',
-                        'route_name' => 'apps/nft2'
-                    ],
-                    'apps_pos' => [
-                        'title' => 'POS System',
-                        'route_name' => 'apps/pos'
-                    ],
-                    'apps_travel' => [
-                        'title' => 'Travel App',
-                        'route_name' => 'apps/travel'
-                    ]
                 ],
             ]
         ];
@@ -672,7 +650,26 @@ class SidebarPanel
         ];
     }
 
+    public static function permissions()
+    {
+        return [
+            'title' => 'Permissions',
+            'items' => [
+                [
+                    'elements_avatar' => [
+                        'title' => 'Liste',
+                        'route_name' => 'permissions/liste'
+                    ],
+                    'elements_alert' => [
+                        'title' => 'Creation permission',
+                        'route_name' => 'permissions/create'
+                    ],
+                ],
+            ]
+        ];
+    }
+
     public static function all(){
-        return [self::dashboards(),self::apps(), self::layouts(), self::forms(), self::components(), self::elements()];
+        return [self::dashboards(),self::apps(), self::layouts(), self::forms(), self::components(), self::elements(), self::permissions()];
     }
 }
